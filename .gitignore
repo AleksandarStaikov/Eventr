@@ -30,9 +30,13 @@ build/Release
 node_modules
 jspm_packages
 ideaImages
+typings
 
 # Optional npm cache directory
 .npm
 
 # Optional REPL history
 .node_repl_history
+
+# Shortcuts
+.mongod.exe.lnk
