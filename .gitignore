@@ -39,4 +39,4 @@ typings
 .node_repl_history
 
 # Shortcuts
-.mongod.exe.lnk
+mongod.exe.lnk
