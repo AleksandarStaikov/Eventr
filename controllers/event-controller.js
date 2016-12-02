@@ -45,8 +45,7 @@ module.exports = function(data) {
             let id = req.params.id;
             let content = req.body.content;
             console.log(content);
-            let author = "Anonimus";
-            data.addCommentToEvent(id, content, author)
+            data.addCommentToEvent(id, content)
                 .then(event => {
                     return res.redirect(`/events/${id}`);
                 });
@@ -65,11 +64,6 @@ module.exports = function(data) {
                 });
         },
         createEvent(req, res) {
-            let author = {
-                id: req.user._id,
-                name: req.user.name,
-            };
-
             let {
                 title,
                 categories,
@@ -80,8 +74,7 @@ module.exports = function(data) {
                     title,
                     categories,
                     preparation,
-                    priceInBGN,
-                    author)
+                    priceInBGN)
                 .then(event => {
                     return res.redirect(`/events/${event.id}`);
                 })
