@@ -5,7 +5,7 @@ const MIN_PATTERN_LENGTH = 3;
 module.exports = function(models) {
     let {
         Event,
-        //User,
+        User,
         Category
     } = models;
 
@@ -85,11 +85,10 @@ module.exports = function(models) {
                 });
             });
         },
-        addCommentToEvent(id, content, author) {
+        addCommentToEvent(id, content) {
             return new Promise((resolve, reject) => {
                 let newComment = {
-                    content,
-                    author: { username: author }
+                    content
                 };
 
                 Event.findByIdAndUpdate(id, { $push: { comments: newComment } }, { safe: true, upsert: true }, (err, event) => {
@@ -102,7 +101,7 @@ module.exports = function(models) {
             });
         },
         createEvent(title, categoriesIds, preparation,
-            priceInBGN, author) {
+            priceInBGN) {
 
             return new Promise((resolve, reject) => {
                 findCategoriesByIds(categoriesIds)
@@ -111,8 +110,7 @@ module.exports = function(models) {
                             title,
                             categories,
                             preparation,
-                            priceInBGN,
-                            author
+                            priceInBGN
                         });
 
                         return new Promise((resolve, reject) => {
