@@ -54,15 +54,29 @@ module.exports = function(data) {
                         .send(err);
                 });
         },
+        // getCreateEventForm(req, res) {
+        //     if (!req.isAuthenticated()) {
+        //         return res.redirect("/");
+        //     }
+
+        //     data.getAllCategories()
+        //         .then(categories => {
+        //             return res.render("event/create", {
+        //                 categories,
+        //                 user: req.user
+        //             });
+        //         });
+        // },
         getCreateCategoryForm(req, res) {
-            // if (!req.isAuthenticated()) {
-            //     return res.redirect("/");
-            // }
+            if (!req.isAuthenticated()) {
+                return res.redirect("/");
+            }
 
             return data.getAllCategories()
                 .then(categories => {
                     return res.render("category/create", {
-                        model: categories
+                        model: categories,
+                        user: req.user
                     });
                 });
         },
