@@ -1,0 +1,19 @@
+extends ../_layout
+
+block content
+    form(action="/events" method="post")
+        input.form-control(type="text" name="title" placeholder="Title")
+        input.form-control(type="text" name="priceInBGN" placeholder="Price [BGN]")
+        textarea.form-control(name="preparation" placeholder="Describe Preparation")
+
+        h3
+           | Категории:
+        ul
+            each category in categories
+                li
+                    label
+                        = category.name
+                        input.form-control(type="checkbox" name="categories" value=category.id)
+
+        button.btn
+            | Добави

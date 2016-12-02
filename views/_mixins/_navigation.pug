@@ -10,6 +10,12 @@ mixin site-navigation
                 a.navbar-brand(href="/") The Events Rush
             #navbar-collapse.collapse.navbar-collapse
                 ul.nav.navbar-nav
+                    li
+                        a(href="/categories/list") Categories
+                    li
+                        a(href="/categories/create") Add Category
+                    li
+                        a(href="/events/create") Add Event
                     if user
                         li
                             form(action="auth/sign-out" method="post")

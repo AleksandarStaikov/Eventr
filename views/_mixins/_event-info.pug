@@ -1,0 +1,10 @@
+mixin event-info(event)
+    .event-info-container.text-center
+        .event-info
+            strong
+                =   event.title
+            br
+           
+            if user
+                a.btn.btn-danger
+                    | Add to favorites

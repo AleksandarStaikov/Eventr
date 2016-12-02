@@ -5,18 +5,18 @@ const mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 const eventSchema = mongoose.Schema({
-    name: { type: String, require: true },
-    location: { type: String, require: true },
+    name: { type: String, require: false },
+    location: { type: String, require: false },
     description: { type: String },
-    isPublic: { type: Boolean, require: true },
-    startTime: { type: Date, require: true },
+    isPublic: { type: Boolean, require: false },
+    startTime: { type: Date, require: false },
     creator: {
-        creatorId: { type: String, require: true },
-        name: { type: String, require: true }
+        creatorId: { type: String, require: false },
+        name: { type: String, require: false }
     },
     subscribers: [{
-        subscriberId: { type: String, require: true },
-        name: { type: String, require: true }
+        subscriberId: { type: String, require: false },
+        name: { type: String, require: false }
     }]
 });
 

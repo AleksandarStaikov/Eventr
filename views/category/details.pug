@@ -1,0 +1,11 @@
+extends ../_layout
+
+block content
+    if model
+        h2= model.name
+
+        ol
+            each event in model.events
+                li.form
+                    a(href="/events/" + event.id)= event.title
+                       

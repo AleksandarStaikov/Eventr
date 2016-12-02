@@ -1,0 +1,14 @@
+extends ../_layout
+
+block content
+    .text-center
+        form.form-inline(action="/categories" method="post")
+            input.form-control(type="text" name="name" placeholder="Category name")
+            button.btn.btn-danger(type="submit") Create
+
+    h3 Categories
+    if model
+        ol
+            each category in model
+                li
+                    div= category.name

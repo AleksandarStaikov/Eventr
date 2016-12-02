@@ -1,0 +1,30 @@
+extends ../_layout
+
+block content
+    div.container
+        h3=   model.title
+        ul
+            each category in model.categories
+                li
+                    a(href="/categories/" + category.id)= category.name
+        
+        strong 
+            div.col-xs-12="Автор: " + user.username
+            div.col-xs-12= "Добавена на " + model.created
+            
+        a.btn.btn-danger
+            | Добави към любими
+        div
+            h3
+                | Коментари
+            ul
+                each comment in model.comments
+                    li
+                        strong= user.username
+                                p= "Добавен на  " + comment.created
+                        p= comment.content
+        
+        form(method="post" action="/events/"+model.id)
+            textarea.form-control(name="content" placeholder="Добави коментар")
+            br
+            input.btn.btn-danger(type="submit" value="Публикувай")
