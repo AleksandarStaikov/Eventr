@@ -1,0 +1,18 @@
+include _event-info
+
+mixin events-list(events, currentPage, pages)
+    ul.list.list-horizontal.list-pages.text-center
+        - for(let i = 1; i <= pages; i+=1 )
+            li
+                if currentPage === i
+                    a.btn.btn-danger.disabled(href="/events?page=" + i)
+                        = i
+                else
+                    a.btn.btn-danger(href="/events?page=" + i)
+                        = i
+
+    ul.list.text-center
+        each event in events
+            li
+                .list-item-container
+                    +event-info(event)

@@ -1,0 +1,20 @@
+extends ../_layout
+
+block content
+    form(action="/events/edit/"+event.id method="post")
+        input.form-control(type="text" name="title" value= event.title)
+        input.form-control(type="text" name="priceInBGN" value= event.priceInBGN)
+        textarea.form-control(name="preparation" value= event.preparation)
+            = event.preparation
+        
+        h3
+           | Категории:
+        ul
+            each category in categories
+                li
+                    label
+                        = category.name
+                        input.form-control(type="checkbox" name="categories" value=category._id)
+
+        button.btn
+            | Промени
