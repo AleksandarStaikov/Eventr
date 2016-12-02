@@ -6,7 +6,8 @@
     "start": "node app.js",
         "development": "./node_modules/.bin/nodemon .",
         "test": "./node_modules/.bin/mocha tests",
-        "postinstall": "./node_modules/.bin/bower install"
+        "postinstall": "./node_modules/.bin/bower install",
+        "serv": "start cmd /k mongod.exe.lnk"
   },
   "author": "",
   "license": "ISC",
