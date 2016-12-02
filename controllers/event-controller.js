@@ -20,7 +20,7 @@ function parseEventData(reqBody) {
     };
 }
 
-module.exports = function(data) {
+module.exports = function (data) {
     const controller = {
         getEventDetails(req, res) {
             // To check if user is registered
@@ -44,7 +44,6 @@ module.exports = function(data) {
         addComment(req, res) {
             let id = req.params.id;
             let content = req.body.content;
-            console.log(content);
             data.addCommentToEvent(id, content)
                 .then(event => {
                     return res.redirect(`/events/${id}`);
@@ -64,17 +63,28 @@ module.exports = function(data) {
                 });
         },
         createEvent(req, res) {
+            if (!req.isAuthenticated()) {
+                return res.redirect("/")
+            }
+            
             let {
                 title,
                 categories,
                 preparation,
                 priceInBGN
             } = parseEventData(req.body);
+
+            let creator = {
+                creatorId: req.user._id,
+                name: req.user.username
+            };
+
             return data.createEvent(
-                    title,
-                    categories,
-                    preparation,
-                    priceInBGN)
+                title,
+                categories,
+                preparation,
+                priceInBGN,
+                creator)
                 .then(event => {
                     return res.redirect(`/events/${event.id}`);
                 })
@@ -121,11 +131,11 @@ module.exports = function(data) {
             } = parseEventData(req.body);
 
             data.editEventById(
-                    id,
-                    title,
-                    categories,
-                    preparation,
-                    priceInBGN)
+                id,
+                title,
+                categories,
+                preparation,
+                priceInBGN)
                 .then(event => {
                     if (!event) {
                         return res.redirect("/");

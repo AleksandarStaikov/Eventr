@@ -18,7 +18,7 @@ mixin site-navigation
                         a(href="/events/create") Add Event
                     if user
                         li
-                            form(action="auth/sign-out" method="post")
+                            form(action="/auth/sign-out" method="post")
                                 button
                                     | Sign out
                         li

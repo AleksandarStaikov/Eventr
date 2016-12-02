@@ -2,10 +2,10 @@
 
 const MIN_PATTERN_LENGTH = 3;
 
-module.exports = function(models) {
+module.exports = function (models) {
     let {
-        Event,
         User,
+        Event,
         Category
     } = models;
 
@@ -101,16 +101,20 @@ module.exports = function(models) {
             });
         },
         createEvent(title, categoriesIds, preparation,
-            priceInBGN) {
+            priceInBGN, creator) {
 
             return new Promise((resolve, reject) => {
                 findCategoriesByIds(categoriesIds)
                     .then(categories => {
                         let event = new Event({
-                            title,
-                            categories,
-                            preparation,
-                            priceInBGN
+                            title: title,
+                            categories: categoriesIds,
+                            preparation: preparation,
+                            priceInBGN: priceInBGN,
+                            creator: {
+                                creatorId: creator.creatorId,
+                                name: creator.name
+                            }
                         });
 
                         return new Promise((resolve, reject) => {
@@ -118,7 +122,6 @@ module.exports = function(models) {
                                 if (err) {
                                     return reject(err);
                                 }
-
                                 return resolve(event);
                             });
                         });
@@ -129,6 +132,7 @@ module.exports = function(models) {
                             .catch(reject);
                     })
                     .catch(err => {
+                        console.log(err);
                         return reject(err);
                     });
             });
@@ -137,24 +141,24 @@ module.exports = function(models) {
             priceInBGN) {
             return new Promise((resolve, reject) => {
                 Event.findById(id, (err, event) => {
-                        if (err) {
-                            console.log(err);
-                            return err;
-                        }
+                    if (err) {
+                        console.log(err);
+                        return err;
+                    }
 
-                        return event;
-                    })
+                    return event;
+                })
                     .then(removeEventFromItsCategories)
                     .then(() => {
                         findCategoriesByIds(categoriesIds)
                             .then(categories => {
                                 return new Promise((resolve, reject) => {
                                     Event.findByIdAndUpdate(id, {
-                                            title,
-                                            categories,
-                                            preparation,
-                                            priceInBGN
-                                        }, { safe: true, new: true },
+                                        title,
+                                        categories,
+                                        preparation,
+                                        priceInBGN
+                                    }, { safe: true, new: true },
                                         (err, event) => {
                                             if (err) {
                                                 console.log(err);

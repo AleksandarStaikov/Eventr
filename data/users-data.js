@@ -1,20 +1,26 @@
 /* globals module require Promise */
 
-module.exports = function(models) {
+module.exports = function (models) {
     let {
         User
     } = models;
 
     return {
-        createUser(username, password) {
-            let user = new User({ username, password });
+        createUser(username, passwordHash, email) {
+            let user = new User({
+                username: username,
+                passwordHash: passwordHash,
+                email: email,
+                dateCreated: new Date()
+            });
+
             return new Promise((resolve, reject) => {
-                user.save(err => {
+                user.save((err, savedUser) => {
                     if (err) {
                         return reject(err);
                     }
 
-                    return resolve(user);
+                    return resolve(savedUser);
                 });
             });
         }

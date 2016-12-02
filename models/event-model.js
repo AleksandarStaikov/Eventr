@@ -1,41 +1,25 @@
-/* globals require module */
+/* globals require module*/
 
 const modelRegistrator = require("./utils/model-registrator");
-const units = ["гр.", "мл.", "ч. л.", "с. л.", "щипка", "бр."];
 
-module.exports = modelRegistrator.register("Recept", {
-    title: {
-        type: String,
-        required: true
+module.exports = modelRegistrator.register("Event",{
+    name: { type: String, require: true },
+    location: { type: String, require: true },
+    description: { type: String },
+    isPublic: { type: Boolean, require: true },
+    startTime: { type: Date, require: true },
+    creator: {
+        creatorId: { type: String, require: true },
+        name: { type: String, require: true }
     },
-    categories: [{}],
-    // to do custom validator
-    preparation: {
-        type: String,
-        required: true,
-        min: 10,
-        max: 2000
-    },
-    priceInBGN: {
-        type: Number,
-        required: true
-    },
-    created: {
-        type: Date,
-        required: true,
-        default: Date.now
-    },
+    subscribers: [{
+        subscriberId: { type: String, require: true },
+        name: { type: String, require: true }
+    }],
     comments: [{
-        created: {
-            type: Date,
-            required: true,
-            default: Date.now
-        },
-        content: {
-            type: String,
-            required: true,
-            min: 10,
-            max: 200
-        }
+        creatorId: { type: String, require: true },
+        creatorName: { type: String, require: true },
+        dateCreated: { type: Date, require: true },
+        content: { type: String, require: true }
     }]
 });

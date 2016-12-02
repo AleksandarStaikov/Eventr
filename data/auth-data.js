@@ -1,7 +1,8 @@
 /* globals module require Promise */
 
 const dataUtils = require("./utils/data-utils"),
-    mapper = require("../utils/mapper");
+    mapper = require("../utils/mapper"),
+    sha1 = require("sha1");
 
 const MIN_PATTERN_LENGTH = 3;
 
@@ -12,8 +13,9 @@ module.exports = function(models) {
 
     return {
         findUserByCredentials(username, password) {
+            let passwordHash = sha1(password);
             return new Promise((resolve, reject) => {
-                User.findOne({ username, password }, (err, user) => {
+                User.findOne({ username, passwordHash }, (err, user) => {
                     if (err) {
                         return reject(err);
                     }
