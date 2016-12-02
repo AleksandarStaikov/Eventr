@@ -6,6 +6,6 @@ block content
 
         ul
             each event in model.events
-                li
-                    a(href="/events/" + event.id)= event.name
+                li.form
+                    a(href="/events/" + event.id)= event.title
                        
