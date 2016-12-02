@@ -8,9 +8,9 @@ block content
                 li
                     a(href="/categories/" + category.id)= category.name
         
-        div.col-xs-12="Автор: " +model.author
-        div.col-xs-12= "Добвена на " + model.created
-        div.col-xs-12
+        strong 
+            div.col-xs-12="Автор: " + user.username
+            div.col-xs-12= "Добавена на " + model.created
             
         a.btn.btn-danger
             | Добави към любими
@@ -20,8 +20,8 @@ block content
             ul
                 each comment in model.comments
                     li
-                        strong= comment.author.username
-                        p= "Добавен на  " + comment.created
+                        strong= user.username
+                                p= "Добавен на  " + comment.created
                         p= comment.content
         
         form(method="post" action="/events/"+model.id)
