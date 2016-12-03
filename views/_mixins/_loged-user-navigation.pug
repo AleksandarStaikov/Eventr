@@ -30,6 +30,8 @@ mixin site-loged-user-navigation
                                 span.glyphicon.glyphicon-user
                                 |  #{user.username}
                     li
+                        a(href="/profile/")= user.facebook.email
+                    li
                         form(action="/user/sign-out" method="post")
                             button.btn.navbar-btn.btn-side-margin
                                 span.glyphicon.glyphicon-log-in

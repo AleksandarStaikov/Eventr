@@ -12,6 +12,13 @@ module.exports = modelRegistrator.register("User", {
         name: String,
         startDate: Date
     }],
+    facebook: {
+        id: String,
+        token: String,
+        name: String,
+        email: String,
+        picture: String
+    },
     preparations: [{
         preparationId: String,
         name: String,
