@@ -4,7 +4,7 @@ const dataUtils = require("./utils/data-utils");
 
 const MIN_PATTERN_LENGTH = 3;
 
-module.exports = function(models) {
+module.exports = function (models) {
     let {
         Category
     } = models;
@@ -50,6 +50,25 @@ module.exports = function(models) {
                     return resolve(category);
                 });
             });
-        }
+        },
     };
 };
+
+
+
+
+// getCategoriesByIds(ids) {
+//     return new Promise((resolve, reject) => {
+//         Category.find({ _id: { $in: ids } }, )
+
+//     });
+// };
+
+
+// function Solve(err, data) {
+//     if (err) {
+//         return reject(err);
+//     }
+
+//     return resolve(data);
+// }

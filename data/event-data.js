@@ -2,7 +2,7 @@
 
 const MIN_PATTERN_LENGTH = 3;
 
-module.exports = function (models) {
+module.exports = function(models) {
     let {
         User,
         Event,
@@ -18,8 +18,8 @@ module.exports = function (models) {
 
                     for (let categ of categories) {
                         let categInEvent = {
-                            name: categ.name,
-                            id: categ._id
+                            categoryName: categ.name,
+                            _id: categ._id
                         };
 
                         eventCategories.push(categInEvent);
@@ -100,21 +100,23 @@ module.exports = function (models) {
                 });
             });
         },
-        createEvent(title, categoriesIds, preparation,
-            priceInBGN, creator) {
+        createEvent(title, location, description,
+            isPublic, priceInBGN, date,
+            categoriesIds, creator) {
 
             return new Promise((resolve, reject) => {
                 findCategoriesByIds(categoriesIds)
                     .then(categories => {
+
                         let event = new Event({
                             title: title,
-                            categories: categoriesIds,
-                            preparation: preparation,
-                            priceInBGN: priceInBGN,
-                            creator: {
-                                creatorId: creator.creatorId,
-                                name: creator.name
-                            }
+                            location: location,
+                            description: description,
+                            isPublic: isPublic,
+                            price: priceInBGN,
+                            startTime: date,
+                            creator: creator,
+                            categories: categories
                         });
 
                         return new Promise((resolve, reject) => {

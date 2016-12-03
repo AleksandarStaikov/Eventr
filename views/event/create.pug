@@ -1,11 +1,36 @@
 extends ../_layout
 
+block styles
+     link(rel='stylesheet', href='/static/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css')
+
+block headScripts
+    script(type='text/javascript', src='/static/bower_components/moment/min/moment.min.js')
+    script(type='text/javascript', src='/static/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js')
+    script(src="/static/js/datetime-picker.js")
+   
 block content
     form(action="/events" method="post")
         input.form-control(type="text" name="title" placeholder="Title")
-        input.form-control(type="text" name="priceInBGN" placeholder="Price [BGN]")
-        textarea.form-control(name="preparation" placeholder="Describe Preparation")
+        input.form-control(type="text" name="location" placeholder="Location")
+        textarea.form-control( name="description" placeholder="Description")
+        h2    
+        |Is Public
+        br
+        label(for='yes') Yes
+        input#yes.form-control(type="radio" name="isPublic" value="true")
+        label(for='no') No
+        input#no.form-control(type="radio" name="isPublic" value="false")
+        
 
+        input.form-control(type="text" name="priceInBGN" placeholder="Price [BGN]")
+        .container
+            .row
+                .col-sm-6
+                    .form-group
+                        #datetimepicker1.input-group.date
+                            input.form-control(type='text' name="date")
+                            span.input-group-addon
+                                span.glyphicon.glyphicon-calendar    
         h3
            | Категории:
         ul
@@ -14,6 +39,5 @@ block content
                     label
                         = category.name
                         input.form-control(type="checkbox" name="categories" value=category.id)
-
         button.btn
             | Добави

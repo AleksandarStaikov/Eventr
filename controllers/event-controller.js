@@ -3,9 +3,12 @@
 function parseEventData(reqBody) {
     let {
         title,
-        categories,
-        preparation,
+        location,
+        description,
+        isPublic,
         priceInBGN,
+        date,
+        categories,
     } = reqBody;
 
     if (!Array.isArray(categories)) {
@@ -14,16 +17,18 @@ function parseEventData(reqBody) {
 
     return {
         title,
+        location,
+        description,
+        isPublic,
+        priceInBGN,
+        date,
         categories,
-        preparation,
-        priceInBGN
     };
 }
 
-module.exports = function (data) {
+module.exports = function(data) {
     const controller = {
         getEventDetails(req, res) {
-            // To check if user is registered
             let id = req.params.id;
             data.getEventById(id)
                 .then(event => {
@@ -33,7 +38,6 @@ module.exports = function (data) {
 
                     return res.render("event/details", {
                         model: event,
-                        user: req.user
                     });
                 })
                 .catch(err => {
@@ -66,12 +70,15 @@ module.exports = function (data) {
             if (!req.isAuthenticated()) {
                 return res.redirect("/")
             }
-            
+
             let {
                 title,
-                categories,
-                preparation,
-                priceInBGN
+                location,
+                description,
+                isPublic,
+                priceInBGN,
+                date,
+                categories
             } = parseEventData(req.body);
 
             let creator = {
@@ -79,12 +86,9 @@ module.exports = function (data) {
                 name: req.user.username
             };
 
-            return data.createEvent(
-                title,
-                categories,
-                preparation,
-                priceInBGN,
-                creator)
+            return data.createEvent(title, location, description,
+                isPublic, priceInBGN, date,
+                categories, creator)
                 .then(event => {
                     return res.redirect(`/events/${event.id}`);
                 })
@@ -92,6 +96,7 @@ module.exports = function (data) {
                     res.status(400)
                         .send(err);
                 });
+
         },
         getEditEventForm(req, res) {
             if (!req.isAuthenticated()) {

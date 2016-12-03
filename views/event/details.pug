@@ -2,29 +2,14 @@ extends ../_layout
 
 block content
     div.container
-        h3=   model.title
-        ul
-            each category in model.categories
-                li
-                    a(href="/categories/" + category.id)= category.name
-        
-        strong 
-            div.col-xs-12="Автор: " + user.username
-            div.col-xs-12= "Добавена на " + model.created
-            
-        a.btn.btn-danger
-            | Добави към любими
-        div
-            h3
-                | Коментари
-            ul
-                each comment in model.comments
-                    li
-                        strong= user.username
-                                p= "Добавен на  " + comment.created
-                        p= comment.content
-        
-        form(method="post" action="/events/"+model.id)
-            textarea.form-control(name="content" placeholder="Добави коментар")
-            br
-            input.btn.btn-danger(type="submit" value="Публикувай")
+        div 
+            h3 Title: #{model.title}
+            h5 User: #{ model.creator.name}
+            h5 Description: #{model.description}
+            h5 Location: #{model.location}
+            if model.isPublic
+                h5 Type: Public
+            else 
+                h5 Type: Private
+            h5 Event starts at #{model.startTime}
+            h5 Event created on: #{model.createdAt}

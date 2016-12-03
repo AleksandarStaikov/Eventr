@@ -8,7 +8,6 @@ module.exports = function(data) {
             let { username, password , email} = req.body;
 
             let passwordHash = sha1(password);
-            console.log(passwordHash, email);
             data.createUser(username, passwordHash, email)
                 .then(user => {
                     return res.redirect("/auth/sign-in");

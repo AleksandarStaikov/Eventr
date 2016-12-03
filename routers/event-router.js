@@ -14,6 +14,7 @@ module.exports = function({ app, data }) {
         .get("/create", controller.getCreateEventForm)
         .get("/edit/:id", controller.getEditEventForm)
         .get("/:id", controller.getEventDetails)
+        //.get("/", controller.GetEvents)
         .post("/", controller.createEvent)
         .post("/edit/:id", controller.editEventById)
         .post("/:id", controller.addComment);
