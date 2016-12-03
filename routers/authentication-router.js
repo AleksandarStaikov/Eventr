@@ -15,11 +15,11 @@ module.exports = function({ app, data }) {
         .get("/sign-in", controller.getSignInForm)
         .post("/sign-up", controller.signUp)
         .post("/sign-in",
-            passport.authenticate("local", { failureRedirect: "/auth/sign-in" }),
+            passport.authenticate("local", { failureRedirect: "/user/sign-in" }),
             (req, res) => res.redirect("/"))
         .post("/sign-out", controller.signOut);
 
-    app.use("/auth", router);
+    app.use("/user", router);
 
     return router;
 };

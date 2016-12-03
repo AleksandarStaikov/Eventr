@@ -20,7 +20,8 @@ module.exports = function(data) {
             data.getAllCategories()
                 .then(categories => {
                     return res.render("category/all", {
-                        model: categories
+                        model: categories,
+                        user: req.user
                     });
                 })
                 .catch(err => {
@@ -46,7 +47,8 @@ module.exports = function(data) {
             return data.getCategoryById(id)
                 .then(category => {
                     return res.render("category/details", {
-                        model: category
+                        model: category,
+                        user: req.user
                     });
                 })
                 .catch(err => {

@@ -38,6 +38,7 @@ module.exports = function(data) {
 
                     return res.render("event/details", {
                         model: event,
+                        user: req.user
                     });
                 })
                 .catch(err => {
@@ -155,6 +156,12 @@ module.exports = function(data) {
                     console.log("Error finding and editing event by ID: " + err);
                     return res.redirect("/");
                 });
+        },
+        getAllPublicEvents(req, res) {
+            res.render("not-ready", { user: req.user })
+        },
+        getUserScheduledEvents(req, res) {
+            res.render("not-ready", { user: req.user })
         }
     };
 

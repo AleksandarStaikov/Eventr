@@ -1,4 +1,6 @@
-include _mixins/_navigation
+include _mixins/_loged-user-navigation
+include _mixins/_no-user-navigation
+
 
 <!DOCTYPE html>
 html(lang="en")
@@ -7,7 +9,7 @@ head
     title The Events Rush: 
         block site-title
     link(rel="stylesheet", href="/static/bower_components/bootstrap/dist/css/bootstrap.css")
-    link(rel="stylesheet", href="/static/css/main.css")
+    link(rel="stylesheet", href="/static/css/site.css")
     block styles
 
     script(src="/static/bower_components/jquery/dist/jquery.js")
@@ -15,6 +17,9 @@ head
     block headScripts
 body
     header
-        +site-navigation
+        if user
+            +site-loged-user-navigation
+        else
+            +site-no-user-navigation
     #content.container
         block content
