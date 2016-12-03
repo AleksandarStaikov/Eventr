@@ -10,7 +10,7 @@ module.exports = function(data) {
             let passwordHash = sha1(password);
             data.createUser(username, passwordHash, email)
                 .then(user => {
-                    return res.redirect("/user/sign-in", { user: req.user });
+                    return res.redirect("/user/sign-in");
                 })
                 .catch(err => {
                     console.log(err);
