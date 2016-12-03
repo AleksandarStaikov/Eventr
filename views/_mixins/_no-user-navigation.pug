@@ -12,7 +12,11 @@ mixin site-no-user-navigation
                 ul.nav.navbar-nav
                     li
                         a(href="/categories/list") Categories
-
+                    li
+                        form.form-inline(action="/search" method="get")
+                            input.form-control(type="text" name="pattern")
+                            button.btn.btn-danger
+                                span.glyphicon.glyphicon-search
                 ul.nav.navbar-nav.navbar-right
                     li
                         a(href="/user/sign-up") Sign up

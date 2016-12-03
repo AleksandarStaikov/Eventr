@@ -51,6 +51,35 @@ module.exports = function (models) {
                 });
             });
         },
+        searchCategories({
+            pattern,
+            page,
+            pageSize
+        }) {
+            let query = {};
+            if (typeof pattern === "string" && pattern.length >= MIN_PATTERN_LENGTH) {
+                query.$or = [{
+                    name: new RegExp(`.*${pattern}.*`, "gi")
+                }];
+            }
+
+            let skip = (page - 1) * pageSize,
+                limit = page * pageSize;
+
+            return new Promise((resolve, reject) => {
+                Category.find()
+                    .where(query)
+                    .skip(skip)
+                    .limit(limit)
+                    .exec((err, categories) => {
+                        if (err) {
+                            return reject(err);
+                        }
+
+                        return resolve(categories || []);
+                    });
+            });
+        }
     };
 };
 

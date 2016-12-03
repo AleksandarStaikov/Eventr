@@ -18,6 +18,11 @@ mixin site-loged-user-navigation
                         a(href="/categories/create") Add Category
                     li
                         a(href="/events/create") Add Event
+                    li
+                        form.form-inline(action="/search" method="get")
+                            input.form-control(type="text" name="pattern")
+                            button.btn.btn-danger
+                                span.glyphicon.glyphicon-search
                 ul.nav.navbar-nav.navbar-right
                     li
                         form(action="/user/" + user._id method="get")
