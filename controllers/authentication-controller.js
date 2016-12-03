@@ -20,6 +20,9 @@ module.exports = function(data) {
             req.logout();
             res.redirect("/");
         },
+        getUserDetails(req, res) {
+            return res.render("not-ready", { user: req.user })
+        },
         getSignUpForm(req, res) {
             return res.render("authentication/sign-up", { user: req.user });
         },
