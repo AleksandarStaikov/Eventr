@@ -15,7 +15,7 @@ mixin site-no-user-navigation
                     li
                         form.form-inline(action="/search" method="get")
                             input.form-control(type="text" name="pattern")
-                            button.btn.btn-danger
+                            button.btn.navbar-btn.btn-side-margin
                                 span.glyphicon.glyphicon-search
                 ul.nav.navbar-nav.navbar-right
                     li
@@ -23,8 +23,8 @@ mixin site-no-user-navigation
                     li
                         a(href="/user/sign-in") Sign in
                     li
-                        .form-group
-                            .col-sm-offset-3.col-sm-7
-                                a.btn.btn-block.btn-facebook.btn-social(href="/auth/facebook")
+                        div
+                            div
+                                a.btn.navbar-btn.btn-side-margin(href="/auth/facebook")
                                     i.fa.fa-facebook
                                     | Login with Facebook
