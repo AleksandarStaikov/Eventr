@@ -11,6 +11,21 @@ module.exports = function (models) {
 
     return {
         createCategory(name) {
+            let category = new Category({ name });
+            if (3 > name.length || name.length > 20 ) {
+                console.log("ïnvalid title length.", name.length);
+                return Promise.reject({ reason: "Name must be between 3 and 20 characters long." });
+            }
+
+            return new Promise((resolve, reject) => {
+                category.save(err => {
+                    if (err) {
+                        return reject(err);
+                    }
+
+                    return resolve(category);
+                });
+            });
             return dataUtils.loadOrCreateCategory(Category, name);
         },
         getAllCategories() {
