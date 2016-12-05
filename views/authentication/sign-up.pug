@@ -5,8 +5,8 @@ block content
         .col-xs-offset-1.col-xs-10.col-sm-offset-4.col-sm-4
             form(action="/user/sign-up" method="post")
                 input.form-control.top-bot-margin(type="text" name="username" placeholder="Username")
-                input.form-control.top-bot-margin(type="text" name="password" placeholder="Password")
-                input.form-control.top-bot-margin(type="text" name="passwordRepeat" placeholder="Repeat the password")
+                input.form-control.top-bot-margin(type="password" name="password" placeholder="Password")
+                input.form-control.top-bot-margin(type="password" name="passwordRepeat" placeholder="Repeat the password")
                 input.form-control.top-bot-margin(type="text" name="email" placeholder="Email")
                 button(onClick='alert("Successfully registered!")').btn.btn-danger.col-xs-12.top-bot-margin
                     | Sign up

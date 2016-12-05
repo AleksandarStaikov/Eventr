@@ -15,7 +15,7 @@ module.exports = function({ data }) {
     app.use(cookieParser());
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(bodyParser.json());
-    app.use(session({ secret: "purple unicorn" }));
+    app.use(session({ secret: "flying monkeys" }));
     require("./passport")({ app, data });
     return app;
 };

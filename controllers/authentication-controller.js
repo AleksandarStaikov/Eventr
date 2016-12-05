@@ -21,7 +21,7 @@ module.exports = function(data) {
             res.redirect("/");
         },
         getUserDetails(req, res) {
-            return res.render("not-ready", { user: req.user })
+            return res.render("authentication/profile", { user: req.user })
         },
         getSignUpForm(req, res) {
             return res.render("authentication/sign-up", { user: req.user });

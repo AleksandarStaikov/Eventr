@@ -6,4 +6,4 @@ const app = require("./config/application")({ data });
 
 require("./routers")({ app, data });
 
-app.listen(config.port, () => console.log(`Events running at :${config.port}`));
+app.listen(config.port, () => console.log(`Events running at: ${config.port}`));

@@ -57,23 +57,6 @@ module.exports = function(models) {
         });
     }
 
-    function removeEventFromItsCategories(event) {
-        return new Promise((resolve, reject) => {
-            event.categories.forEach(categ => {
-                Category.findByIdAndUpdate(
-                    categ.id, { $pull: { events: { id: event._id } } }, { safe: true, new: true },
-                    (err, c) => {
-                        if (err) {
-                            console.log(err);
-                            return reject(err);
-                        }
-                    });
-            });
-
-            return resolve(event);
-        });
-    }
-
     return {
         getEventById(id) {
             return new Promise((resolve, reject) => {
@@ -82,21 +65,6 @@ module.exports = function(models) {
                         return reject(err);
                     }
                     return resolve(event);
-                });
-            });
-        },
-        addCommentToEvent(id, content) {
-            return new Promise((resolve, reject) => {
-                let newComment = {
-                    content
-                };
-
-                Event.findByIdAndUpdate(id, { $push: { comments: newComment } }, { safe: true, upsert: true }, (err, event) => {
-                    if (err) {
-                        reject(err);
-                    }
-
-                    resolve(event);
                 });
             });
         },
@@ -136,49 +104,6 @@ module.exports = function(models) {
                     .catch(err => {
                         console.log(err);
                         return reject(err);
-                    });
-            });
-        },
-        editEventById(id, title, categoriesIds, preparation,
-            priceInBGN) {
-            return new Promise((resolve, reject) => {
-                Event.findById(id, (err, event) => {
-                    if (err) {
-                        console.log(err);
-                        return err;
-                    }
-
-                    return event;
-                })
-                    .then(removeEventFromItsCategories)
-                    .then(() => {
-                        findCategoriesByIds(categoriesIds)
-                            .then(categories => {
-                                return new Promise((resolve, reject) => {
-                                    Event.findByIdAndUpdate(id, {
-                                        title,
-                                        categories,
-                                        preparation,
-                                        priceInBGN
-                                    }, { safe: true, new: true },
-                                        (err, event) => {
-                                            if (err) {
-                                                console.log(err);
-                                                return reject(err);
-                                            }
-
-                                            return resolve(event);
-                                        });
-                                });
-                            })
-                            .then(event => {
-                                addEventToCategories(categoriesIds, event)
-                                    .then(resolve)
-                                    .catch(reject);
-                            })
-                            .catch(err => {
-                                return reject(err);
-                            });
                     });
             });
         },

@@ -46,14 +46,6 @@ module.exports = function(data) {
                     return res.redirect("/");
                 });
         },
-        addComment(req, res) {
-            let id = req.params.id;
-            let content = req.body.content;
-            data.addCommentToEvent(id, content)
-                .then(event => {
-                    return res.redirect(`/events/${id}`);
-                });
-        },
         getCreateEventForm(req, res) {
             if (!req.isAuthenticated()) {
                 return res.redirect("/");
@@ -98,64 +90,6 @@ module.exports = function(data) {
                         .send(err);
                 });
 
-        },
-        getEditEventForm(req, res) {
-            if (!req.isAuthenticated()) {
-                return res.redirect("/");
-            }
-
-            let id = req.params.id;
-            data.getEventById(id)
-                .then(event => {
-                    if (!event) {
-                        return res.redirect("/");
-                    }
-
-                    data.getAllCategories()
-                        .then(categories => {
-                            return res.render("event/edit", {
-                                categories,
-                                event,
-                                user: req.user
-                            });
-                        })
-                        .catch(err => {
-                            return err;
-                        });
-                })
-                .catch(err => {
-                    return err;
-                });
-        },
-        editEventById(req, res) {
-            let id = req.params.id;
-            let {
-                title,
-                categories,
-                preparation,
-                priceInBGN
-            } = parseEventData(req.body);
-
-            data.editEventById(
-                id,
-                title,
-                categories,
-                preparation,
-                priceInBGN)
-                .then(event => {
-                    if (!event) {
-                        return res.redirect("/");
-                    }
-
-                    return res.render("events/details", {
-                        model: event,
-                        user: req.user
-                    });
-                })
-                .catch(err => {
-                    console.log("Error finding and editing event by ID: " + err);
-                    return res.redirect("/");
-                });
         },
         getAllPublicEvents(req, res) {
             res.render("not-ready", { user: req.user })

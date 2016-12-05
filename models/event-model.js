@@ -20,11 +20,5 @@ module.exports = modelRegistrator.register("Event", {
     subscribers: [{
         subscriberId: { type: String, require: true },
         name: { type: String, require: true }
-    }],
-    comments: [{
-        creatorId: { type: String, require: true },
-        creatorName: { type: String, require: true },
-        dateCreated: { type: Date, require: true },
-        content: { type: String, require: true }
     }]
 });

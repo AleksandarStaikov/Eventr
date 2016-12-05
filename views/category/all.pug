@@ -1,7 +1,10 @@
 extends ../_layout
 
+block styles
+        link(rel="stylesheet", href="/static/css/category-all.css")
+
 block content
-    ul
+    ul.list
         each category in model
             li.col-xs-4
                 a(href="/categories/" + category.id)= category.name

@@ -56,19 +56,6 @@ module.exports = function(data) {
                         .send(err);
                 });
         },
-        // getCreateEventForm(req, res) {
-        //     if (!req.isAuthenticated()) {
-        //         return res.redirect("/");
-        //     }
-
-        //     data.getAllCategories()
-        //         .then(categories => {
-        //             return res.render("event/create", {
-        //                 categories,
-        //                 user: req.user
-        //             });
-        //         });
-        // },
         getCreateCategoryForm(req, res) {
             if (!req.isAuthenticated()) {
                 return res.redirect("/");
@@ -81,12 +68,6 @@ module.exports = function(data) {
                         user: req.user
                     });
                 });
-        },
-        updateCategory(req, res) {
-
-        },
-        deleteCategory(req, res) {
-
         }
     };
 };

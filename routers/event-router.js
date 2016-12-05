@@ -10,15 +10,11 @@ module.exports = function({ app, data }) {
     let router = new Router();
 
     router
-    // .get("/newest", controller.getNewestEventsAjax)
         .get("/mySchedule", controller.getUserScheduledEvents)
         .get("/create", controller.getCreateEventForm)
-        .get("/edit/:id", controller.getEditEventForm)
         .get("/:id", controller.getEventDetails)
         .get("/", controller.getAllPublicEvents)
-        .post("/", controller.createEvent)
-        .post("/edit/:id", controller.editEventById)
-        .post("/:id", controller.addComment);
+        .post("/", controller.createEvent);
 
     app.use("/events", router);
 

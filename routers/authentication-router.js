@@ -7,6 +7,8 @@ let Router = express.Router;
 
 module.exports = function({ app, data }) {
     let controller = require("../controllers/authentication-controller")(data);
+    let userController = require("../controllers/user-controller")(data);
+
 
     let router = new Router();
 
@@ -18,12 +20,14 @@ module.exports = function({ app, data }) {
         .post("/sign-in",
             passport.authenticate("local", { failureRedirect: "/user/sign-in" }),
             (req, res) => res.redirect("/"))
-        .post("/sign-out", controller.signOut);
+        .post("/sign-out", controller.signOut)
+        .get("/profile", userController.getAccount)
+        .post("/profile", userController.postUpdateProfile);
 
     app.use("/user", router);
 
     app.get("/auth/facebook", passport.authenticate("facebook", { scope: ["email", "user_location"] }));
-    app.get("/auth/facebook/callback", passport.authenticate("facebook", { failureRedirect: "/login" }), (req, res) => {
+    app.get("/auth/facebook/callback", passport.authenticate("facebook", { failureRedirect: "/user/sign-in" }), (req, res) => {
         res.redirect(req.session.returnTo || "/");
     });
 

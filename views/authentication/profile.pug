@@ -1,0 +1,23 @@
+extends ../_layout
+
+block content
+  .page-header
+    h2 
+      | Profile information
+
+    form.form-horizontal
+          input(type="hidden")
+          .form-group
+            label.col-sm-3.control-label(for="username") Username
+            .col-sm-7
+              input.form-control(type="username", name="username", id="username", value=user.username || user.facebook.name)
+          input(type="hidden")
+          .form-group
+            label.col-sm-3.control-label(for="email") Email
+            .col-sm-7
+              input.form-control(type="email", name="email", id="email", value=user.email)
+          input(type="hidden")
+          .form-group
+            label.col-sm-3.control-label(for="pictire") Picture URL
+            .col-sm-7
+              input.form-control(type="pictire", name="pictire", id="pictire", value=user.facebook.picture || "No picture")

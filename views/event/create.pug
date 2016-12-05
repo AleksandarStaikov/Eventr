@@ -32,12 +32,12 @@ block content
                             span.input-group-addon
                                 span.glyphicon.glyphicon-calendar    
         h3
-           | Категории:
+           | Categories:
         ul
             each category in categories
                 li
                     label
                         = category.name
                         input.form-control(type="checkbox" name="categories" value=category.id)
-        button.btn.btn-top-bot-margin
-            | Добави
+        button.btn.btn-danger
+            | Add

@@ -1,0 +1,11 @@
+ul.list{
+    text-decoration: underline
+}
+li{
+    text-align: center;
+    display: block;  
+    list-style-type: none;
+}
+li.col-xs-4 :hover{
+    font-size: 150%;
+}
