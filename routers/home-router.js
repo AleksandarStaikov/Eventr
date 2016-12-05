@@ -1,4 +1,4 @@
-/* globals module require */
+/* globals const module require */
 
 const express = require("express");
 let Router = express.Router;
