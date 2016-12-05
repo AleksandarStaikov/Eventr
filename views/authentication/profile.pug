@@ -8,16 +8,22 @@ block content
     form.form-horizontal
           input(type="hidden")
           .form-group
-            label.col-sm-3.control-label(for="username") Username
+            label.col-sm-3.control-label(for="username") Username:
             .col-sm-7
-              input.form-control(type="username", name="username", id="username", value=user.username || user.facebook.name)
+              if user.username 
+                | #{user.username}
+              else
+               | #{user.facebook.name}
           input(type="hidden")
           .form-group
-            label.col-sm-3.control-label(for="email") Email
+            label.col-sm-3.control-label(for="email") Email:
             .col-sm-7
-              input.form-control(type="email", name="email", id="email", value=user.email)
+              | #{user.email}
           input(type="hidden")
           .form-group
-            label.col-sm-3.control-label(for="pictire") Picture URL
-            .col-sm-7
-              input.form-control(type="pictire", name="pictire", id="pictire", value=user.facebook.picture || "No picture")
+            label.col-sm-3.control-label(for="pictire") Picture URL:
+            if user.facebook.picture
+              a(href="" + user.facebook.picture) Picture
+            else
+              | No picture
+            
