@@ -1,5 +1,7 @@
 /* globals module */
 
+"use strict";
+
 function parseEventData(reqBody) {
     let {
         title,

@@ -1,5 +1,7 @@
 /* globals require describe it beforeEach afterEach*/
 
+"use strict";
+
 const chai = require("chai");
 const sinonModule = require("sinon");
 

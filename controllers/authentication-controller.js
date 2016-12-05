@@ -1,11 +1,13 @@
 /* globals module */
 
+"use strict";
+
 const sha1 = require("sha1");
 
 module.exports = function(data) {
     return {
         signUp(req, res) {
-            let { username, password, email} = req.body;
+            let { username, password, email } = req.body;
 
             let passwordHash = sha1(password);
             data.createUser(username, passwordHash, email)

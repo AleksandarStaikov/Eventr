@@ -1,4 +1,5 @@
 /* globals module require */
+
 "use strict";
 
 const passport = require("passport"),

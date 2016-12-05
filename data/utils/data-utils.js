@@ -1,4 +1,7 @@
 /* globals module */
+
+"use strict";
+
 module.exports = {
     loadOrCreateCategory(Category, name) {
         return new Promise((resolve, reject) => {

@@ -1,5 +1,7 @@
 /* globals require module __dirname global */
 
+"use strict";
+
 const mongoose = require("mongoose");
 
 const fs = require("fs"),

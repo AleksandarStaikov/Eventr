@@ -1,10 +1,8 @@
 /* globals module require Promise */
 
-const dataUtils = require("./utils/data-utils"),
-    mapper = require("../utils/mapper"),
-    sha1 = require("sha1");
+"use strict";
 
-const MIN_PATTERN_LENGTH = 3;
+const sha1 = require("sha1");
 
 module.exports = function(models) {
     let {

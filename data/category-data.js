@@ -1,6 +1,6 @@
 /* globals module require Promise */
 
-const dataUtils = require("./utils/data-utils");
+"use strict";
 
 const MIN_PATTERN_LENGTH = 3;
 
@@ -26,7 +26,6 @@ module.exports = function (models) {
                     return resolve(category);
                 });
             });
-            return dataUtils.loadOrCreateCategory(Category, name);
         },
         getAllCategories() {
             return new Promise((resolve, reject) => {
@@ -97,22 +96,3 @@ module.exports = function (models) {
         }
     };
 };
-
-
-
-
-// getCategoriesByIds(ids) {
-//     return new Promise((resolve, reject) => {
-//         Category.find({ _id: { $in: ids } }, )
-
-//     });
-// };
-
-
-// function Solve(err, data) {
-//     if (err) {
-//         return reject(err);
-//     }
-
-//     return resolve(data);
-// }

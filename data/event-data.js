@@ -1,10 +1,11 @@
 /* globals module require Promise */
 
+"use strict";
+
 const MIN_PATTERN_LENGTH = 3;
 
 module.exports = function(models) {
     let {
-        User,
         Event,
         Category
     } = models;

@@ -1,5 +1,7 @@
 /* globals module require */
 
+"use strict";
+
 const express = require("express");
 const passport = require("passport");
 
