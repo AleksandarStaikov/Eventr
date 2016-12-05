@@ -3,7 +3,7 @@
 "use strict";
 
 let connectionString = {
-    production: "mongodb://eventsrush:123456@ds119728.mlab.com:19728/eventsrush",
+    production: "mongodb://eventsrush:123456@ds119728.mlab.com:19728/eventr-8080",
     development: "mongodb://localhost/eventsrush"
 };
 module.exports = {
