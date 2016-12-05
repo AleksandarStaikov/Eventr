@@ -8,7 +8,6 @@ let connectionString = {
 };
 module.exports = {
     environment: process.env.NODE_ENV || "development",
-    // connectionString: connectionString[process.env.NODE_ENV || "development"],
-    connectionString: connectionString["production"],
+    connectionString: connectionString[process.env.NODE_ENV || "development"],
     port: process.env.PORT || 3000
 };
