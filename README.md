@@ -79,4 +79,5 @@ Technologies, frameworks and development techniques used in the "Events e-Web Ap
 - Used Git repository:
   https://github.com/AleksandarStaikov/Eventr
 
-- "Events  e-Web Application" uploaded in the cloud;
+- "Events  e-Web Application" uploaded in the cloud:
+http://eventr-8080.herokuapp.com/
